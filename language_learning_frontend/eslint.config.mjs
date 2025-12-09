@@ -30,14 +30,26 @@ export default [
       "@typescript-eslint": tseslint,
     },
     rules: {
-      // Your custom rules here
+      // TS-specific rules can be added here
     },
   },
   {
+    files: ["**/*.js", "**/*.mjs"],
     languageOptions: {
       globals: {
+        window: "readonly",
         document: "readonly",
+        location: "readonly",
+        localStorage: "readonly",
+        fetch: "readonly",
+        Node: "readonly",
       },
+      ecmaVersion: 2022,
+      sourceType: "module",
     },
+    rules: {
+      "no-unused-vars": ["warn", { argsIgnorePattern: "^_", varsIgnorePattern: "^_", caughtErrorsIgnorePattern: "^_" }],
+      "no-undef": "error"
+    }
   },
 ];
